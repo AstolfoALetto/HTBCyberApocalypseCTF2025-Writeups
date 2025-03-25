@@ -1,15 +1,14 @@
 # Cyber Apocalypse CTF 2025: Tales from Eldoria
 
-> ### Strategist
+## Strategist
 > To move forward, Sir Alaric requests each member of his team to present their most effective planning strategy. The individual with the strongest plan will be appointed as the Strategist for the upcoming war. Put forth your best effort to claim the role of Strategist!
 
-- **Category**: Mwn 
+- **Category**: Pwn 
 - **Difficulty**: Medium
 - **Author**: Cioppo
 
 
 ## Writeup
----
 Credit to [him](https://www.hackthebox.com/blog/bon-nie-appetit-ca-ctf-2022-pwn-writeup), the challenge was pretty much the same, this is my own more beginner friendly version of the writeup as someone who learned a lot from this!
 
 Protection:
@@ -184,7 +183,7 @@ This is our plan
  -  Override ``__free_hook()`` with ``system()`` and call ``system("/bin/sh)`` with a ``free()``. We can use the out-of-bounds write we have and poison the tcache of the next chunk and change the size.
 
 ### Leak libc
----
+
 First, let's see the man page of ``read``
 ```
 DESCRIPTION
@@ -285,7 +284,7 @@ Mind that you need to send that ``0xa0`` byte in the second plan because we will
 We have the base of libc, now we can work as if PIE wasn't there!
 
 ### Call system
----
+
 To call the system we will need a couple of steps, first let's remember how we can write out-of-bounds.
 ```C
 unsigned __int64 __fastcall edit_plan(__int64 plans)
@@ -458,6 +457,8 @@ delete_plan(2)
 ```
 And just like this we have the flag :)
 
+
+
 ### Full exploit
 ---
 ```py
@@ -540,3 +541,5 @@ def main():
 if __name__ == "__main__":
     main()
 ```
+
+>HTB{0ld_r3l14bl3_l1bc_st1ll_3x15t5_49ded1a8bc9ea474885fc08f253e8c02}
