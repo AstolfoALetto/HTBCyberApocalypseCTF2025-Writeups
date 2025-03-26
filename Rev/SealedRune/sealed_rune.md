@@ -77,7 +77,7 @@ reversed
 VaelGnuffraz
 ```
 
-input al executable
+input into the executable
 ```bash
        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
        ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡾⠋⠙⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀

@@ -231,4 +231,4 @@ if __name__ == "__main__":
     main()
 ```
 
->HTB{~c4n4ry_g035_qu4ck_qu4ck~_bb5be49bc421f11646e85b598441c163}
+>HTB{\~c4n4ry_g035_qu4ck_qu4ck\~_bb5be49bc421f11646e85b598441c163}

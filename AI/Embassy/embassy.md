@@ -5,7 +5,7 @@
 
 
 - **Category**: AI 
-- **Points**: Easy
+- **Difficulty**: Easy
 - **Author**: Andy190
 
 
