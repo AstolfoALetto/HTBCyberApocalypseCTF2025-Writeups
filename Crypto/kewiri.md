@@ -12,7 +12,7 @@
 
 This challenge is essentially an Elliptic Curves 101, so I'll make it as beginner-friendly as possible to ensure that everyone can learn something (just like I did with this challenge! 😉)
 
-⚠️ This challenges the way i did it requires multiple files and sage
+⚠️ This challenges the way I did it requires multiple files and sage
 
 ## Writeup
 
@@ -175,7 +175,7 @@ def calculate_curve_order(p, a, b):
 def main():s
     p = 21214334341047589034959795830530169972304000967355896041112297190770972306665257150126981587914335537556050020788061
     a = 408179155510362278173926919850986501979230710105776636663982077437889191180248733396157541580929479690947601351140
-b = 8133402404274856939573884604662224089841681915139687661374894548183248327840533912259514444213329514848143976390134   
+    b = 8133402404274856939573884604662224089841681915139687661374894548183248327840533912259514444213329514848143976390134   
     print("Calculating the order of the elliptic curve...")
     print(f"Prime p = {p}")
     print(f"Curve equation: y^2 = x^3 + ({a})x + {b}")
@@ -213,16 +213,16 @@ So to avoid the problem we factorize it with [factordb.com](https://factordb.com
 from sage.all import GF, EllipticCurve
 
 def compute_order_Fp3(p, order_Fp):
-t_p = p + 1 - order_Fp
-t_p3 = t_p**3 - 3 * p * t_p
-order_Fp3 = p**3 + 1 - t_p3
-return order_Fp3
+    t_p = p + 1 - order_Fp
+    t_p3 = t_p**3 - 3 * p * t_p
+    order_Fp3 = p**3 + 1 - t_p3
+    return order_Fp3
 
 if __name__ == "__main__":
-p = 21214334341047589034959795830530169972304000967355896041112297190770972306665257150126981587914335537556050020788061
-order_Fp = 21214334341047589034959795830530169972304000967355896041112297190770972306665257150126981587914335537556050020788061
-order_Fp3 = compute_order_Fp3(p, order_Fp)
-print(f"Order of the elliptic curve over F_{{p^3}}: {order_Fp3}")
+    p = 21214334341047589034959795830530169972304000967355896041112297190770972306665257150126981587914335537556050020788061
+    order_Fp = 21214334341047589034959795830530169972304000967355896041112297190770972306665257150126981587914335537556050020788061
+    order_Fp3 = compute_order_Fp3(p, order_Fp)
+    print(f"Order of the elliptic curve over F_{{p^3}}: {order_Fp3}")
 ```
 
 We end up with this
@@ -316,47 +316,47 @@ To find the exact cooridnate we use [Tonelli-shanks algorithm](https://en.wikipe
 
 ```python
 def tonelli_shanks(n, p):
-assert pow(n, (p - 1) // 2, p) == 1, 
-if n == 0:
-return 0
-if p % 4 == 3:
-return pow(n, (p + 1) // 4, p)
-s = 0
-q = p - 1
-while q % 2 == 0:
-s += 1
-q //= 2
-z = 2
-while pow(z, (p - 1) // 2, p) == 1:
-z += 1
-m = s
-c = pow(z, q, p)
-t = pow(n, q, p)
-r = pow(n, (q + 1) // 2, p)
-while t != 0 and t != 1:
-t2i = t
-i = 0
-for i in range(1, m):
-t2i = pow(t2i, 2, p)
-if t2i == 1:
-break
-b = pow(c, 2**(m - i - 1), p)
-m = i
-c = pow(b, 2, p)
-t = (t * c) % p
-r = (r * b) % p
-return r if t == 1 else None
+    assert pow(n, (p - 1) // 2, p) == 1
+    if n == 0:
+        return 0
+    if p % 4 == 3:
+        return pow(n, (p + 1) // 4, p)
+    s = 0
+    q = p - 1
+    while q % 2 == 0:
+        s += 1
+        q //= 2
+    z = 2
+    while pow(z, (p - 1) // 2, p) == 1:
+        z += 1
+    m = s
+    c = pow(z, q, p)
+    t = pow(n, q, p)
+    r = pow(n, (q + 1) // 2, p)
+    while t != 0 and t != 1:
+        t2i = t
+        i = 0
+        for i in range(1, m):
+            t2i = pow(t2i, 2, p)
+            if t2i == 1:
+                break
+        b = pow(c, 2**(m - i - 1), p)
+        m = i
+        c = pow(b, 2, p)
+        t = (t * c) % p
+        r = (r * b) % p
+    return r if t == 1 else None
 ```
 
 And we call it with this 
 
 ```python
 def get_y(x, a, b, p):
-rhs = (x**3 + a*x + b) % p
-y = tonelli_shanks(rhs, p) 
-if y is None:
-return None 
-return y
+    rhs = (x**3 + a*x + b) % p
+    y = tonelli_shanks(rhs, p) 
+    if y is None:
+        return None 
+    return y
 ```
 
 ## The completed script
