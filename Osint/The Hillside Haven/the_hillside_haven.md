@@ -7,7 +7,7 @@ Example: HTB{13_OakwoodRoad} No special characters
 
 
 - **Category**: OSINT 
-- **Difficulty**: ~~Easy~~ Hard
+- **Difficulty**: ~~Easy~~ Insane
 - **Author**: Alexct549
 
 ## Writeup
